@@ -30,15 +30,7 @@ public class ApplicationConfiguration {
     @Bean(name = "objectMapper")
     public ObjectMapper getObjectMapper(){
         ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.registerModule(new JodaModule());
-        objectMapper.registerModule(new DruidDefaultSerializersModule());
-        objectMapper.registerModule(new GuavaModule());
-        objectMapper.registerModule(new QueryGranularityModule());
-        objectMapper.registerModule(new AggregatorsModule());
-        objectMapper.registerModule(new SegmentsModule());
-
-        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        objectMapper.configure(MapperFeature.ALLOW_FINAL_FIELDS_AS_MUTATORS, false);
         return objectMapper;
     }
+
 }

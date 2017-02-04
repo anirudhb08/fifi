@@ -1,20 +1,21 @@
 package com.plan.startup.Controllers;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import com.plan.startup.Services.ZomatoService;
+import com.plan.startup.ZomatoEntities.LocationResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by anirudh.b on 04/02/17.
  */
 @RestController
 public class StartController {
+    @Autowired ZomatoService zomatoService;
+
     @CrossOrigin
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public String getAllCustomAlerts() throws Exception {
-        return "OK";
+    @RequestMapping(value = "/test", params = {"latitude","longitude"}, method = RequestMethod.GET)
+    public String getRestaurantByLocation( @RequestParam(value="latitude")double latitude, @RequestParam(value="longitude")double longitude ) throws Exception {
+        String locationResponse = zomatoService.getRestaurantsByLocation(latitude,longitude);
+        return locationResponse;
     }
 }
