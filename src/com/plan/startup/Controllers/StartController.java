@@ -17,15 +17,18 @@ public class StartController {
     @CrossOrigin
     @RequestMapping(value = "/getRestaurants", params = {"latitude","longitude"}, method = RequestMethod.GET)
     public String getRestaurantByLocation( @RequestParam(value="latitude")double latitude, @RequestParam(value="longitude")double longitude ) throws Exception {
-        String locationResponse = zomatoService.getRestaurantsByLocation(latitude,longitude);
-        return locationResponse;
+        String restaurantsByLocation = zomatoService.getRestaurantsByLocation(latitude,longitude);
+        return restaurantsByLocation;
     }
 
     @CrossOrigin
     @RequestMapping(value = "/getRestaurants", params = {"place"}, method = RequestMethod.GET)
     public String getRestaurantByPlaceName( @RequestParam(value="place")String place) throws Exception {
         LocationApiResponse locationResponse = googleMapsService.getLocationCoordinates(place);
-        return locationResponse.toString();
+        double latitude = locationResponse.getResults().get(0).getGeometry().getLocation().getLatitude();
+        double longitude = locationResponse.getResults().get(0).getGeometry().getLocation().getLongitude();
+        String restaurantsByLocation = zomatoService.getRestaurantsByLocation(latitude,longitude);
+        return restaurantsByLocation;
     }
 
 

@@ -9,4 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Geometry {
     @JsonProperty Location location;
+
+    public Location getLocation() {
+        return location;
+    }
 }

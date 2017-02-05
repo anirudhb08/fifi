@@ -12,4 +12,12 @@ import java.util.List;
 public class LocationApiResponse {
     @JsonProperty List<LocationApiResult> results;
     @JsonProperty String status;
+
+    public List<LocationApiResult> getResults() {
+        return results;
+    }
+
+    public void setResults(List<LocationApiResult> results) {
+        this.results = results;
+    }
 }

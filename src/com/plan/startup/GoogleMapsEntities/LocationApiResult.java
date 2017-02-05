@@ -10,4 +10,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class LocationApiResult {
     @JsonProperty Geometry geometry;
     @JsonProperty String formatted_address;
+
+    public Geometry getGeometry() {
+        return geometry;
+    }
+
+    public void setGeometry(Geometry geometry) {
+        this.geometry = geometry;
+    }
 }
