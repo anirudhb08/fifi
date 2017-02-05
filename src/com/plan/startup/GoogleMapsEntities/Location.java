@@ -8,5 +8,5 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Location {
     @JsonProperty(value = "lat") double latitude;
-    @JsonProperty(value = "lon") double longitude;
+    @JsonProperty(value = "lng") double longitude;
 }

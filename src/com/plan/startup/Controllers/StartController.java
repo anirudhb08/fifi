@@ -1,5 +1,6 @@
 package com.plan.startup.Controllers;
 
+import com.plan.startup.GoogleMapsEntities.LocationApiResponse;
 import com.plan.startup.Services.GoogleMapsService;
 import com.plan.startup.Services.ZomatoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,8 @@ public class StartController {
     @CrossOrigin
     @RequestMapping(value = "/getRestaurants", params = {"place"}, method = RequestMethod.GET)
     public String getRestaurantByPlaceName( @RequestParam(value="place")String place) throws Exception {
-        String locationResponse = googleMapsService.getLocationCoordinates(place);
-        return locationResponse;
+        LocationApiResponse locationResponse = googleMapsService.getLocationCoordinates(place);
+        return locationResponse.toString();
     }
 
 
