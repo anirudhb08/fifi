@@ -13,7 +13,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
+import java.util.Queue;
 
 /**
  * Created by anirudh.b on 04/02/17.
@@ -31,6 +33,11 @@ public class ApplicationConfiguration {
     public ObjectMapper getObjectMapper(){
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper;
+    }
+
+    @Bean
+    public Queue<String> getQueue(){
+        return new LinkedList<String>();
     }
 
 }
