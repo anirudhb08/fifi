@@ -7,7 +7,12 @@ import com.plan.startup.Services.ZomatoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.AbstractQueue;
 import java.util.Queue;
+import java.util.concurrent.LinkedBlockingQueue;
+
+import javax.annotation.Resource;
+
 
 /**
  * Created by anirudh.b on 04/02/17.
@@ -17,7 +22,7 @@ public class StartController {
     @Autowired ZomatoService zomatoService;
     @Autowired GoogleMapsService googleMapsService;
     @Autowired GaanaService gaanaService;
-    @Autowired Queue<String> queue;
+    @Autowired LinkedBlockingQueue<String> queue;
     Thread thread;
 
     @CrossOrigin
@@ -41,9 +46,6 @@ public class StartController {
     @RequestMapping(value = "/addSong", params = {"name"}, method = RequestMethod.GET)
     public String addSong(@RequestParam(value="name")String songName) throws Exception {
         queue.add(songName);
-        if(queue.size()==1){
-            thread.interrupt();
-        }
         return "OK";
     }
 

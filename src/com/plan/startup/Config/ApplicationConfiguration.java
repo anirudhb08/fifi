@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * Created by anirudh.b on 04/02/17.
@@ -38,6 +39,11 @@ public class ApplicationConfiguration {
     @Bean
     public Queue<String> getQueue(){
         return new LinkedList<String>();
+    }
+    
+    @Bean
+    public LinkedBlockingQueue<String> getLinkedBlockingQueue(){
+    	return new LinkedBlockingQueue<String>();
     }
 
 }
