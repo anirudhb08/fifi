@@ -7,7 +7,12 @@ import com.plan.startup.Services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.AbstractQueue;
 import java.util.Queue;
+import java.util.concurrent.LinkedBlockingQueue;
+
+import javax.annotation.Resource;
+
 
 
 
@@ -21,7 +26,7 @@ public class StartController {
     @Autowired GaanaService gaanaService;
     @Autowired FlockService flockService;
     @Autowired SaavnService saavnService;
-    @Autowired Queue<String> queue;
+    @Autowired LinkedBlockingQueue<String> queue;
     Thread thread;
 
     @CrossOrigin
@@ -45,9 +50,6 @@ public class StartController {
     @RequestMapping(value = "/addSong", params = {"name"}, method = RequestMethod.GET)
     public String addSong(@RequestParam(value="name")String songName) throws Exception {
         queue.add(songName);
-        if(queue.size()==1){
-            thread.interrupt();
-        }
         return "OK";
     }
 
