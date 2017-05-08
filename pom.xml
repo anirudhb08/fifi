@@ -24,7 +24,7 @@
                 <redissson.connect.database>0</redissson.connect.database>
                 <redisson.connect.connectTimeout>10000</redisson.connect.connectTimeout>
                 <redisson.connect.timeout>5000</redisson.connect.timeout>
-                <application.port>8080</application.port>
+                <application.port>8089</application.port>
             </properties>
         </profile>
     </profiles>
@@ -127,6 +127,12 @@
             <groupId>com.squareup.okhttp</groupId>
             <artifactId>okhttp</artifactId>
             <version>2.7.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.tomakehurst</groupId>
+            <artifactId>wiremock</artifactId>
+            <version>2.6.0</version>
         </dependency>
 
 

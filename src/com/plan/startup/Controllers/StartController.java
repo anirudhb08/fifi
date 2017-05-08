@@ -1,13 +1,15 @@
 package com.plan.startup.Controllers;
 
+
+import com.plan.startup.FlockEntities.FlockInstall;
 import com.plan.startup.GoogleMapsEntities.LocationApiResponse;
-import com.plan.startup.Services.GaanaService;
-import com.plan.startup.Services.GoogleMapsService;
-import com.plan.startup.Services.ZomatoService;
+import com.plan.startup.Services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Queue;
+
+
 
 /**
  * Created by anirudh.b on 04/02/17.
@@ -17,6 +19,8 @@ public class StartController {
     @Autowired ZomatoService zomatoService;
     @Autowired GoogleMapsService googleMapsService;
     @Autowired GaanaService gaanaService;
+    @Autowired FlockService flockService;
+    @Autowired SaavnService saavnService;
     @Autowired Queue<String> queue;
     Thread thread;
 
@@ -60,5 +64,31 @@ public class StartController {
         return "Server up and running";
     }
 
+    @CrossOrigin
+    @RequestMapping(value = "/flockListener",method = RequestMethod.GET)
+    public HttpResponseEntity<String> listen() throws Exception {
+        flockService.checkLog();
+        return (new HttpResponseEntity<String>("Done", HttpStatusMessage.OK));
+    }
 
+    @CrossOrigin
+    @RequestMapping(value = "/getSaavnSong",method = RequestMethod.GET)
+    public HttpResponseEntity<String> getSaavn() throws Exception {
+        String s = saavnService.getCurrentSong();
+        return (new HttpResponseEntity<String>(s, HttpStatusMessage.OK));
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/addSaavnSong",method = RequestMethod.GET)
+    public HttpResponseEntity<String> addSaavn(@RequestParam(value="song") String url) throws Exception {
+        saavnService.addSong(url);
+        return (new HttpResponseEntity<String>("Ok", HttpStatusMessage.OK));
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/subscribe",method = RequestMethod.GET)
+    public HttpResponseEntity<Integer> subscribeSaavn() throws Exception {
+        int g = saavnService.subscribe();
+        return (new HttpResponseEntity<Integer>(g, HttpStatusMessage.OK));
+    }
 }

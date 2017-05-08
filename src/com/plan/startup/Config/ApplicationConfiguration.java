@@ -12,10 +12,7 @@ import io.druid.jackson.SegmentsModule;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * Created by anirudh.b on 04/02/17.
@@ -38,6 +35,11 @@ public class ApplicationConfiguration {
     @Bean
     public Queue<String> getQueue(){
         return new LinkedList<String>();
+    }
+
+    @Bean
+    public ArrayList<String> getList(){
+        return new ArrayList<>();
     }
 
 }
